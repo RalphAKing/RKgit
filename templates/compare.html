@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Comparison</title>
+    <style>
+        body {
+            font-family: Consolas, monospace;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: start;
+            width: 100%;
+            overflow: hidden;
+        }
+        .code-editor {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            border: 1px solid #ccc;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        .line-number {
+            width: 40px;
+            text-align: right;
+            padding-right: 10px;
+            color: #999;
+            background-color: #f5f5f5;
+        }
+        .code-content {
+            white-space: pre;
+            padding-left: 10px;
+        }
+        .removed {
+            background-color: #ffcccc;  /* Light red for removed lines */
+        }
+        .added {
+            background-color: #ccffcc;  /* Light green for added lines */
+        }
+        .unchanged {
+            background-color: #f0f0f0;  /* Light gray for unchanged lines */
+        }
+        .scroll-wrapper {
+            display: flex;
+            flex-direction: row;
+            max-height: 80vh;
+            overflow-y: auto;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <h1>Comparing File: {{ filename }}</h1>
+    <div class="container">
+        <div class="scroll-wrapper">
+            <table class="code-editor">
+                <tbody>
+                    {% for line in diff_html %}
+                    <tr class="{{ line[2] }}">
+                        <td class="line-number">{{ line[0] }}</td>
+                        <td class="line-number">{{ line[1] }}</td>
+                        <td class="code-content">{{ line[3]|safe }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

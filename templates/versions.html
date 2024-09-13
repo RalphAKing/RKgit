@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Versions</title>
+</head>
+<body>
+    <h1>Select Versions for Project: {{ project_name }}</h1>
+    <form method="POST">
+        <label for="version1">Select Old Version:</label>
+        <select name="version1" id="version1" required>
+            {% for version in versions %}
+            <option value="{{ version }}">{{ version }}</option>
+            {% endfor %}
+        </select>
+        <br>
+
+        <label for="version2">Select New Version:</label>
+        <select name="version2" id="version2" required>
+            {% for version in versions %}
+            <option value="{{ version }}">{{ version }}</option>
+            {% endfor %}
+        </select>
+        <br>
+
+        <button type="submit">Compare Versions</button>
+    </form>
+</body>
+</html>

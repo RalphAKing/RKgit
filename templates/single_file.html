@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Single File View</title>
+    <style>
+        body {
+            font-family: Consolas, monospace;
+        }
+        .file-content {
+            white-space: pre-wrap;
+            background-color: #f5f5f5;
+            padding: 10px;
+            border: 1px solid #ddd;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>{{ filename }} ({{ version }} Version)</h1>
+    <div class="file-content">
+        {{ content|join('\n') }}
+    </div>
+    <a href="{{ url_for('explore_project', project_name=project_name, version1=version1, version2=version2) }}">Back to File Explorer</a>
+</body>
+</html>
